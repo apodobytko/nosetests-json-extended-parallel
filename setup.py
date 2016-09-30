@@ -6,18 +6,19 @@ description = 'Create json logging output for python' + \
               'nosetests unittest framework',
 
 setup(
-    name='nosetests-json-extended',
-    version='0.1.0',
-    author='Thijs Schenkelaars',
-    author_email='thijs@schenkelaars.nl',
+    name='nosetests-json-extended-parallel',
+    version='1.0',
+    author='Rui Li',
+    author_email='rui.li.spam@gmail.com',
     description=description,
-    url='http://github.com/thschenk/nosetests-json-extended',
-    packages=['nosetests_json_extended'],
+    url='https://github.com/ruivapps/nosetests-json-extended-parallel',
+    download_url='https://github.com/ruivapps/nosetests-json-extended-parallel/tarball/1.0'
+    packages=['nosetests_json_extended_parallel'],
     zip_safe=False,
     entry_points={
         'nose.plugins.0.10': [
-            'nosetests_json_extended = ' +
-            'nosetests_json_extended.plugin:JsonExtendedPlugin'
+            'nosetests_json_extended_parallel = ' +
+            'nosetests_json_extended_parallel.plugin:JsonExtendedPlugin'
         ]
     },
     classifiers=[

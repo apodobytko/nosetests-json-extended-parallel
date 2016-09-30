@@ -2,10 +2,10 @@ from __future__ import absolute_import
 
 import unittest
 
-from nosetests_json_extended.sink import Sink
-from nosetests_json_extended.plugin import TestCaseDescription as TC
-from nosetests_json_extended.plugin import SyntaxErrorReport
-from nosetests_json_extended.plugin import ErrorReport
+from nosetests_json_extended_parallel.sink import Sink
+from nosetests_json_extended_parallel.plugin import TestCaseDescription as TC
+from nosetests_json_extended_parallel.plugin import SyntaxErrorReport
+from nosetests_json_extended_parallel.plugin import ErrorReport
 
 
 class SinkTest(unittest.TestCase):

@@ -4,12 +4,13 @@ from __future__ import absolute_import
 import traceback
 from collections import namedtuple
 from nose.plugins import Plugin
+from multiprocessing import Manager
 
-from nosetests_json_extended.sink import Sink
+from nosetests_json_extended_parallel.sink import Sink
 
 
 class JsonExtendedPlugin(Plugin):
-    name = 'json-extended'
+    name = 'json-extended-parallel'
     score = 2000
 
     def options(self, parser, env):
@@ -23,6 +24,12 @@ class JsonExtendedPlugin(Plugin):
             return
 
         self._sink = Sink()
+        if not hasattr(self.config, '_nose_json_extended_state_'):
+            manager = Manager()
+            self._sink.records = manager.list()
+            self.config._nose_json_extended_state_ = self._sink.records
+        else:
+            self._sink.records = self.config._nose_json_extended_state_
 
     def report(self, stream):
         self._sink.write()

@@ -2,12 +2,12 @@ from __future__ import absolute_import
 
 import unittest
 from nose.plugins import PluginTester
-from nosetests_json_extended.plugin import (JsonExtendedPlugin, wrap_traceback,
+from nosetests_json_extended_parallel.plugin import (JsonExtendedPlugin, wrap_traceback,
                                             syntax_error_report)
 
 
 class Helper(PluginTester, unittest.TestCase):
-    activate = '--with-json-extended'
+    activate = '--with-json-extended-parallel'
     plugins = [JsonExtendedPlugin()]
 
     def makeSuite(self):
@@ -32,7 +32,7 @@ class SucceedsTest(Helper):
 
         self.assertEquals(result.result, 'success')
         self.assertEquals(result.testcase.module,
-                          'nosetests_json_extended.test_plugin.Stub')
+                          'nosetests_json_extended_parallel.test_plugin.Stub')
         self.assertEquals(result.testcase.name, 'runTest')
         self.assertEquals(result.error, None)
         self.assertEquals(result.testcase.filename[-14:], 'test_plugin.py')
