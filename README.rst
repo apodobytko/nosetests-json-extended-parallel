@@ -2,8 +2,7 @@
 nosetests-json-extended-parallel
 =======================
 
-I forked the original project because I need the bug fix for multiprocessing test.
-and I do not have privilege from original repo to create new branch/pull.
+I forked the original project because I need the bug fix for multiprocessing test. (no permission to create new branch from original project)
 
 .. _original_project: https://github.com/thschenk/nosetests-json-extended
 
