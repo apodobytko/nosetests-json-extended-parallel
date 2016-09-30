@@ -12,7 +12,7 @@ setup(
     author_email='rui.li.spam@gmail.com',
     description=description,
     url='https://github.com/ruivapps/nosetests-json-extended-parallel',
-    download_url='https://github.com/ruivapps/nosetests-json-extended-parallel/tarball/1.0'
+    download_url='https://github.com/ruivapps/nosetests-json-extended-parallel/tarball/1.0',
     packages=['nosetests_json_extended_parallel'],
     zip_safe=False,
     entry_points={
