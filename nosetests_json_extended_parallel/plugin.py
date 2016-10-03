@@ -15,6 +15,12 @@ class JsonExtendedPlugin(Plugin):
 
     def options(self, parser, env):
         Plugin.options(self, parser, env)
+        parser.add_option("--json-output-file", action="store",
+                default=env.get('NOSE_JSON_OUTPUT_FILE', 'nosetests.json'),
+                dest="json_file",
+                metavar="FILE",
+                help="save results in the specified JSON file."
+                "[NOSE_JSON_OUTPUT_FILE]" )
 
     def configure(self, options, config):
         Plugin.configure(self, options, config)
@@ -30,6 +36,7 @@ class JsonExtendedPlugin(Plugin):
             self.config._nose_json_extended_state_ = self._sink.records
         else:
             self._sink.records = self.config._nose_json_extended_state_
+        self._sink.output_file=options.json_file
 
     def report(self, stream):
         self._sink.write()
