@@ -2,11 +2,14 @@
 nosetests-json-extended-parallel
 =======================
 
-I forked the original project because I need the bug fix for multiprocessing test. (no permission to create new branch from original project)
+Creates json logging output for python nosetests unittest framework. Works with parallel testing (--processes=N)
+
+
+Forked from nosetests-json-extended project and add support for running nosetest in parallel. 
 
 .. _original_project: https://github.com/thschenk/nosetests-json-extended
 
-Creates json logging output for python nosetests unittest framework.
+
 
 The generated output can be used by the atom-nosetests_ plugin, which adds
 python unit testing capability to the Atom_ editor.
