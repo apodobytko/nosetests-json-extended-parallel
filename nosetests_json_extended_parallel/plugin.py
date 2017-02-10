@@ -10,17 +10,17 @@ from nosetests_json_extended_parallel.sink import Sink
 
 
 class JsonExtendedPlugin(Plugin):
-    name = 'json-extended-parallel'
+    name = 'jsonmp'
     score = 2000
 
     def options(self, parser, env):
         Plugin.options(self, parser, env)
-        parser.add_option("--json-output-file", action="store",
-                default=env.get('NOSE_JSON_OUTPUT_FILE', 'nosetests.json'),
-                dest="json_file",
+        parser.add_option("--jsonmp-file", action="store",
+                default=env.get('NOSE_JSONMP_OUTPUT_FILE', 'nosetests.json'),
+                dest="jsonmp_file",
                 metavar="FILE",
                 help="save results in the specified JSON file."
-                "[NOSE_JSON_OUTPUT_FILE]" )
+                "[NOSE_JSONMP_OUTPUT_FILE]" )
 
     def configure(self, options, config):
         Plugin.configure(self, options, config)
@@ -30,14 +30,14 @@ class JsonExtendedPlugin(Plugin):
             return
 
         self._sink = Sink()
-        if not hasattr(self.config, '_nose_json_extended_state_'):
+        if not hasattr(self.config, '_nose_jsonmp_extended_state_'):
             manager = Manager()
             self._sink.results = manager.list()
             self._sink.stats = manager.dict(**self._sink.stats)
-            self.config._nose_json_extended_state_ = self._sink.results, self._sink.stats
+            self.config._nose_jsonmp_extended_state_ = self._sink.results, self._sink.stats
         else:
-            self._sink.results, self._sink.stats = self.config._nose_json_extended_state_
-        self._sink.output_file=options.json_file
+            self._sink.results, self._sink.stats = self.config._nose_jsonmp_extended_state_
+        self._sink.output_file=options.jsonmp_file
 
     def startTest(self, test):
         self._timer = time()
