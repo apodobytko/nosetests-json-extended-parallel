@@ -1,11 +1,10 @@
 from datetime import datetime
 from multiprocessing import Manager
 from time import time
-import traceback
 
 from nose.exc import SkipTest
 from nose.plugins import Plugin
-from nose.plugins.xunit import id_split, nice_classname, exc_message
+from nose.plugins.xunit import id_split, format_exception
 from nosetests_json_extended_parallel.sink import Sink
 
 
@@ -61,7 +60,7 @@ class JsonExtendedPlugin(Plugin):
         else:
             status = 'error'
             self._sink.stats['errors'] += 1
-        tb = ''.join(traceback.format_exception(*err))
+        tb = format_exception(err)
         test_id = test.id()
         name = id_split(test_id)[-1]
         started = getattr(self, '_timer', time())
@@ -71,16 +70,14 @@ class JsonExtendedPlugin(Plugin):
             'name': name,
             'time': taken,
             'status': status,
-            'error_type': nice_classname(err[0]),
             'started': datetime.fromtimestamp(started).strftime('%x %X'),
             'ended': datetime.fromtimestamp(ended).strftime('%x %X'),
-            'message': exc_message(err),
             'tb': tb,
         })
 
     def addFailure(self, test, err, capt=None, tb_info=None):
         taken = self._get_time_taken()
-        tb = ''.join(traceback.format_exception(*err))
+        tb = format_exception(err)
         self._sink.stats['failures'] += 1
         test_id = test.id()
         name = id_split(test_id)[-1]
@@ -91,10 +88,8 @@ class JsonExtendedPlugin(Plugin):
             'name': name,
             'time': taken,
             'status': 'failure',
-            'error_type': nice_classname(err[0]),
             'started': datetime.fromtimestamp(started).strftime('%x %X'),
             'ended': datetime.fromtimestamp(ended).strftime('%x %X'),
-            'message': exc_message(err),
             'tb': tb,
         })
 
